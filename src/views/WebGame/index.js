@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch,Link } from "react-router-dom";
-import TicTacToe from "./TicTacToe/TicTacToe";
+import TicTacToe from "./TicTacToe";
 
 
 function WebGame(){
@@ -9,7 +9,6 @@ function WebGame(){
       WebGame
       </div>
       <div className="card-body">
-      <Link to="/webgame/TicTacToe" className="btn-primary btn-sm">TicTacToe</Link>
       <Switch>
         <Route path="/webgame/TicTacToe"exact component={TicTacToe}/>
       </Switch>

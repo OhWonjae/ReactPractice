@@ -2,7 +2,7 @@ function ComA(){
   return (
     <div className="card">
       <div className="card-header">
-          ComA
+          ComA 
       </div>
       <div className="card-body">
           content...
