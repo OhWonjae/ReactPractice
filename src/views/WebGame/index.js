@@ -2,7 +2,7 @@ import { Redirect, Route, Switch,Link } from "react-router-dom";
 import TicTacToe from "./TicTacToe";
 
 
-function WebGame(){
+function WebGame(props){
   return (
     <div className="card">
       <div className="card-header">

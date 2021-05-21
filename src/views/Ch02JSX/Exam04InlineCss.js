@@ -1,4 +1,4 @@
-function Exam04InlineCss(){
+function Exam04InlineCss(props){
   const name = "React";
   const mystyle = {
     background:"black", color:"aqua", fontSize:24,fontWeight:"bold", padding:"8px"

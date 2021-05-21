@@ -1,4 +1,4 @@
-function ComBFunTypeEventHandling(){
+function ComBFunTypeEventHandling(props){
 
   function method1(){
 

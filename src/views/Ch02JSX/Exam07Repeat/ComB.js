@@ -1,4 +1,4 @@
-function ComA(){
+function ComA(props){
   const items = [
     {id:"i1",text:"눈사람"},
     {id:"i2",text:"얼음"},

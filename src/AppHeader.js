@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom"
 
-function AppHeader(){
+function AppHeader(props){
   return (
     
     <nav className="navbar bg-dark navbar-dark text-white font-weight-bold 

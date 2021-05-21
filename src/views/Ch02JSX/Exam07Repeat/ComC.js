@@ -1,4 +1,4 @@
-function ComC(){
+function ComC(props){
   const boards = [
     {bno:1, btitle:"제목1",bwriter:"user1",bdate:new Date().toLocaleDateString(),bhitcount:0},
     

@@ -3,13 +3,15 @@ import Ch01ComponentDeclaration from "views/Ch01ComponentDeclaration";
 import Ch02JSX from "views/Ch02JSX";
 import WebGame from "views/WebGame/index";
 import Home from "views/Home";
+import Ch03PropsAndState from "views/Ch03PropsAndState";
 
-function AppRoute(){
+function AppRoute(props){
   return (
     <Switch>
       <Route path="/" exact component={Home}/>
       <Route path="/ch01" component={Ch01ComponentDeclaration}/>
       <Route path="/ch02" component={Ch02JSX}/>
+      <Route path="/ch03" component={Ch03PropsAndState}/>
       <Route path="/webgame" component={WebGame}/>
       <Redirect to="/"/>
     </Switch>
