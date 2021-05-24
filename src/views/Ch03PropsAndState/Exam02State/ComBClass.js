@@ -20,6 +20,12 @@ class ComBClass extends React.Component{
                 number:prevState.number +1
             };
         });
+        //이렇게 하면 안됨!!! 무조건 prevState를 가지고 써야함
+        // this.setState((prevState)=>{
+        //     return {
+        //         number:this.number.number +1
+        //     };
+        // });
         this.setState((prevState)=>{
             return {
                 number:prevState.number +1

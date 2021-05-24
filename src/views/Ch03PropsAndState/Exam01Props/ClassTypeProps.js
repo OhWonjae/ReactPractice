@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types"
 class ClassTypeProps extends React.Component{
+    
     render(){
         const {name, version, children} = this.props;
         return(

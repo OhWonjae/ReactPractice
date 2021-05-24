@@ -10,7 +10,7 @@ function WebGame(props){
       </div>
       <div className="card-body">
       <Switch>
-        <Route path="/webgame/TicTacToe"exact component={TicTacToe}/>
+        <Route path="/webgame/TicTacToe" component={TicTacToe}/>
       </Switch>
       </div>
     </div>    
