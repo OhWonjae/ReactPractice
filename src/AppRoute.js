@@ -5,6 +5,8 @@ import WebGame from "views/WebGame/index";
 import Home from "views/Home";
 import Ch03PropsAndState from "views/Ch03PropsAndState";
 import Ch04LifeCycle from "views/Ch04LifeCycle";
+import Ch05Style from "views/Ch05Style";
+import Ch06Route from "views/Ch06Route";
 
 function AppRoute(props){
   return (
@@ -14,6 +16,8 @@ function AppRoute(props){
       <Route path="/ch02" component={Ch02JSX}/>
       <Route path="/ch03" component={Ch03PropsAndState}/>
       <Route path="/ch04" component={Ch04LifeCycle}/>
+      <Route path="/ch05" component={Ch05Style}/>
+      <Route path="/ch06" component={Ch06Route}/>
       <Route path="/webgame" component={WebGame}/>
       <Redirect to="/"/>
     </Switch>

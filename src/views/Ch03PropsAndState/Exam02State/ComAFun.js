@@ -7,14 +7,23 @@ function ComAFun(props){
         number:0,
         color:"black"
     });
-    const awaitfunc=()=>{};
-    const addNumber = (event) =>{
+    
+    console.log("hi!", state.number);
+    const addNumber = async(event) =>{
         
-        setState({
-            ...state,
-            number:state.number+1,
+         setState((prevstate)=>({
+            ...prevstate,
+            number:prevstate.number+1,
         
-        },()=>{console.log("이후")})
+        }))
+        await new Promise((resolve)=>{
+            setTimeout(resolve,1000);
+        })
+        setState((prevstate)=>({
+            ...prevstate,
+            number:prevstate.number+1,
+        
+        }))
     }
     const changeColor = (event) =>{
         setState({
