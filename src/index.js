@@ -5,11 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
+import { AppContextProvider } from 'AppContext';
+import { createStore } from 'redux';
+import rootReducer from "redux/root-reducer"
+import { Provider } from 'react-redux';
+import {composeWithDevTools} from "redux-devtools-extension"
+
+const store = createStore(rootReducer,composeWithDevTools());
 
 ReactDOM.render(
   //<React.StrictMode>
+  
     <BrowserRouter>
+    <Provider store={store}>
+    <AppContextProvider>
       <App />
+    </AppContextProvider>
+    </Provider>
     </BrowserRouter>,
   //</React.StrictMode>,
   document.getElementById('root')
