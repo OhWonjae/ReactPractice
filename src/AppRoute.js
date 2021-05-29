@@ -9,6 +9,7 @@ import Ch05Style from "views/Ch05Style";
 import Ch06Route from "views/Ch06Route";
 import Ch07PerformanceImprovement from "views/Ch07PerformanceImprovement";
 import Ch08GlobalState from "views/Ch08GlobalState";
+import Ch09Ajax from "views/Ch09Ajax";
 
 function AppRoute(props){
   return (
@@ -22,6 +23,7 @@ function AppRoute(props){
       <Route path="/ch06" component={Ch06Route}/>
       <Route path="/ch07" component={Ch07PerformanceImprovement}/>
       <Route path="/ch08" component={Ch08GlobalState}/>
+      <Route path="/ch09" component={Ch09Ajax}/>
       <Route path="/webgame" component={WebGame}/>
       <Redirect to="/"/>
     </Switch>

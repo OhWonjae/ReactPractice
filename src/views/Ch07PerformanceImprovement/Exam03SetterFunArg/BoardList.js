@@ -41,6 +41,7 @@ function BoardList(props){
   //재할당횟수를 줄일수있음. 이떄는 처음 마운트때만 할당해주면 됨.
   const addBoard= useCallback((argBno, argBtitle) =>{
     const newBoard = {bno:argBno, btitle:argBtitle}
+    console.log(boards);
     setBoards(prevBoards => {
      var newBoards= prevBoards.concat(newBoard)
       newBoards.sort((a,b)=>{return b.bno - a.bno});

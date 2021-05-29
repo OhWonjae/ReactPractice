@@ -21,7 +21,7 @@ const authReducer = (state=initialstate,action) => {
     if(action.type===SET_UID){
         return {...state,uid:action.uid}
     }else if(action.type===SET_AUTH_TOKEN){
-        return {...state,uid:action.authToken}
+        return {...state,authToken:action.authToken}
     }else {
         return state;
     }

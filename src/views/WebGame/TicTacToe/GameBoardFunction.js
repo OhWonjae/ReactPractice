@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function initBoard(){
   let boards = new Array(3);
@@ -13,6 +13,7 @@ function initBoard(){
 }
 
 function GameBoardFunction(props){
+  console.log("start!");
   const [boards, setBoard] = useState(initBoard);
   const [state, setState] = useState({
     rowlen:3,
@@ -27,32 +28,51 @@ function GameBoardFunction(props){
 
   useEffect(()=>{
    var result = ConfirmWin(userstate.x,userstate.y,1);
+   if(result===0)return;
     setState((prevState)=>({
       ...prevState,
       matchinfo:result
     }))
   },[userstate])
+
+
   const [aistate, setAiState] = useState({
     x:0,
     y:0
   })
   useEffect(()=>{
-    console.log(aistate);
+    
+   console.log(state.matchinfo);
     var result = ConfirmWin(aistate.x,aistate.y,2);
+    if(result===0)return;
     setState((prevState)=>({
       ...prevState,
       matchinfo:result
     }))
   },[aistate])
   
+  useEffect(()=>{
+  },[state.matchinfo])
 
-  const ConfirmWin=(x,y,isuser)=>{
+
+  const ReStart = useCallback(() =>{
+    setBoard(initBoard);
+     setState((prev)=>({
+       ...prev,
+       matchinfo:0    
+     }));
+   },[])
+
+  const ConfirmWin=useCallback((x,y,isuser)=>{
+    
     var result=0;
-
+    
     //수평
     var left = x;
     var right = x;
     while(true){
+      console.log("cinfirmboard");
+      console.log(boards)
       if(left===-1 && right===state.collen){result=isuser; break;}
       if(left>=0){
         if(boards[y][left].checked===isuser){
@@ -149,24 +169,50 @@ function GameBoardFunction(props){
     
     
     return result;
-  }
-  const sleep=(ms) =>{
+  },[state,boards])
+  const sleep=useCallback((ms) =>{
     return new Promise((resolve)=>{
       setTimeout(()=>{},ms)
     })
-  }
-  const CellClick= async(event) =>{
-    if(state.turn===false){console.log("turn is false!");return;}
+  },[])
+  const CellClick= useCallback((event) =>{
     var xy = event.target.title.split(",");
     var y = xy[0];
     var x = xy[1];
 
     var cx,cy;
-    while(true){
-      cx = Math.floor(Math.random()*state.collen);    
-      cy = Math.floor(Math.random()*state.rowlen);
-      if((x!=cx && y !=cy) &&boards[cy][cx].checked===0)break;
+    // while(true){
+    //   console.log("ran!!");
+
+    
+
+
+    //    cx = Math.floor(Math.random()*state.collen);    
+    //    cy = Math.floor(Math.random()*state.rowlen);
+    //    if((x!=cx && y !=cy) &&boards[cy][cx].checked===0)break;
+    // }
+    console.log(boards);
+    console.log("x : " + x + "y : " + y);
+    var check = false;
+    for(var i=0; i< state.rowlen; i++){
+      for(var j=0; j< state.collen; j++){
+          if(boards[i][j].checked===0 && (i!=y || j!=x)){
+            cy = i;
+            cx = j;
+            check = true;
+            break;
+          }
+      }
+      if(check===true)break;
     }
+    if(check===false){
+      console.log("비김")
+      ReStart();
+      return;
+    }
+    console.log("cx : " + cx + "cy : " + cy);
+
+
     if(boards[y][x].checked!==0)return;
     setBoard((prevBoard)=>{
       return prevBoard.map((list)=>
@@ -179,7 +225,7 @@ function GameBoardFunction(props){
           x:x,
           y:y
       }))
-
+      console.log("us1");
 
       setBoard((prevBoard)=>{
         return prevBoard.map((list)=>
@@ -191,13 +237,14 @@ function GameBoardFunction(props){
             x:cx,
             y:cy
         }))
+        console.log("as1");
     
-    
-  }
+  },[state,boards,userstate])
 
   return (
     <>
       <div className="container" >
+        match:{state.matchinfo}
         {state.matchinfo===0? boards.map((value,Row)=>{
       return (<div className="row">
         {value.map((v, Col)=>{
@@ -206,7 +253,7 @@ function GameBoardFunction(props){
           </div>)
         })}
   
-      </div>)}):state.matchinfo===1?<div>승리!<button className="btn-primary btn-lg m-2" >다시하기</button></div>:<div>패배!<button className="btn-primary btn-lg m-2" >다시하기</button></div>}
+      </div>)}):state.matchinfo===1?<div>승리!<button className="btn-primary btn-lg m-2" onClick={ReStart} >다시하기</button></div>:<div>패배!<button className="btn-primary btn-lg m-2"onClick={ReStart} >다시하기</button></div>}
       </div>  
     </>
   )

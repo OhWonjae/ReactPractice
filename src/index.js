@@ -10,7 +10,7 @@ import { createStore } from 'redux';
 import rootReducer from "redux/root-reducer"
 import { Provider } from 'react-redux';
 import {composeWithDevTools} from "redux-devtools-extension"
-
+import {addAuthHeader} from "apis/axiosConfig"
 const store = createStore(rootReducer,composeWithDevTools());
 
 ReactDOM.render(
