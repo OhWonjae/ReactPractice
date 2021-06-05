@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 function getRandomColor(){
     return "#" + Math.floor(Math.random()*16777).toString(16);
 }
+var a = 1;
 function ComAFun(props){
     const [state, setState] = useState({
         number:0,
         color:"black"
     });
+    const test = useMemo(() =>{
+        console.log("test");
+    },[state.color])
     
-    console.log("hi!", state.number);
+    useEffect(()=>{
+        console.log("after2" + a);
+        return(()=>{
+            console.log("before2" + a);
+        })
+    },[state.color])
+   
     const addNumber = async(event) =>{
         
          setState((prevstate)=>({
@@ -26,13 +36,16 @@ function ComAFun(props){
         }))
     }
     const changeColor = (event) =>{
+        a  = 10;
         setState({
             ...state,
             color:getRandomColor()
         })
     }
+    console.log("hi")
     return (
         <div className="card">
+            {test}
               <div className="card-header">
                 ComAFun
               </div>
